@@ -84,7 +84,7 @@ export const PRODUCTS = [
     {
         id:10,
         name:"Actuator stem",
-        image:"../components/images/stem.png",
+        image:require("../components/images/stem.png"),
         price: "$152.00",
         featured: true,
         partnumber:"PN:57662"  
@@ -92,7 +92,7 @@ export const PRODUCTS = [
     {
         id:11,
         name:"Valve actuator",
-        image:"../components/images/valveactuator.png",
+        image:require("../components/images/valveactuator.png"),
         price: "$265.25",
         featured: true,
         partnumber:"PN:57663"  
@@ -100,7 +100,7 @@ export const PRODUCTS = [
     {
         id:12,
         name:"First stage regulator",
-        image:"../components/images/regulator.jpeg",
+        image:require("../components/images/regulator.jpeg"),
         price: "$478.50",
         featured: true,
         partnumber:"PN:98875"  
@@ -108,7 +108,7 @@ export const PRODUCTS = [
     {
         id:13,
         name:"Flanged Control",
-        image:"../components/images/flangedcontrol.jpeg",
+        image:require("../components/images/flangedcontrol.jpeg"),
         price: "$789.00",
         featured: true,
         partnumber:"PN:98874"  
@@ -116,7 +116,7 @@ export const PRODUCTS = [
     {
         id:14,
         name:"R-high Pressure",
-        image:"../components/images/regulatorhigh.jpeg",
+        image:require("../components/images/regulatorhigh.jpeg"),
         price: "$1,245.00",
         featured: true,
         partnumber:"PN:57663"  
@@ -124,7 +124,7 @@ export const PRODUCTS = [
     {
         id:15,
         name:"Instrument",
-        image:"../components/images/instrument.jpg",
+        image:require("../components/images/instrument.jpg"),
         price: "$678.25",
         featured: true,
         partnumber:"PN:10998"  
@@ -132,7 +132,7 @@ export const PRODUCTS = [
     {
         id:16,
         name:"Level Transmitter",
-        image:"../components/images/transmitter.jpeg",
+        image:require("../components/images/transmitter.jpeg"),
         price: "$789.00",
         featured: true,
         partnumber:"PN:10999"  
@@ -140,7 +140,7 @@ export const PRODUCTS = [
     {
         id:17,
         name:"Greyline Instrument",
-        image:"../components/images/greyline.jpeg",
+        image:require("../components/images/greyline.jpeg"),
         price: "$1,245.00",
         featured: true,
         partnumber:"PN:10997"  

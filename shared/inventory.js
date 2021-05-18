@@ -1,4 +1,4 @@
-export const PRODUCTS = [
+export const INVENTORIES = [
     {
         id:0,
         name:"Cage",
@@ -19,7 +19,7 @@ export const PRODUCTS = [
         id:2,
         name:"Link",
         image:require("../components/images/link.jpeg"),
-        price: "$278",
+        price: "$278.00",
         featured: false,
         partnumber:"PN:65762"
     },
@@ -36,7 +36,7 @@ export const PRODUCTS = [
         id:4,
         name:"Repair kit",
         image:require("../components/images/repairkit.jpg"),
-        price: "$125",
+        price: "$125.00",
         featured: false,
         partnumber:"PN:67442"
     },
@@ -69,7 +69,7 @@ export const PRODUCTS = [
         id:8,
         name:"Lantern ring",
         image:require("../components/images/lanternring.jpeg"),
-        price: "$325",
+        price: "$325.90",
         featured: true,
         partnumber:"PN:42556"  
     },

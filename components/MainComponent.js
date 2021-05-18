@@ -1,30 +1,41 @@
 import React, { Component } from 'react';
-import Inventory from './InventoryComponent';
-import ProductInfo from './ProductInfoComponent';
-import { View } from 'react-native';
-import { PRODUCTS } from '../shared/products';
+import Product from './ProductComponent';
+import InventoryInfo from './InventoryInfoComponent';
+import { View, Platform } from 'react-native';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+
+const ProductNavigator = createStackNavigator(
+    {
+        Product: { screen: Product },
+        InventoryInfo: { screen: InventoryInfo }
+    },
+    {
+        initialRouteName: 'Product',
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#B90E0A'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+);
+
+const AppNavigator = createAppContainer(ProductNavigator);
 
 class Main extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            products: PRODUCTS,
-            selectedProduct: null
-        };
-    }
-    onProductSelect(productId){
-        this.setState({selectedProduct: productId});
-    }
     render(){
         return (
-            <View style={{flex: 1}}>
-                <Inventory 
-                    products = {this.state.products} 
-                    onPress = {productId => this.onProductSelect(productId)}
-                />
-                <ProductInfo
-                    product = {this.state.products.filter(product => product.id === this.state.selectedProduct)[0]}
-                />
+            <View style={{
+                flex: 1,
+                paddingTop: Platform.OS === 'i0s ? 0 : Expo.Constants.statusBarHeight'
+                }}>
+
+                <AppNavigator />
+
             </View>
         );
     }

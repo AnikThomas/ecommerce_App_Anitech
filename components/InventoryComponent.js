@@ -9,7 +9,8 @@ function Inventory(props){
             <ListItem
                 title={item.name}
                 subtitle={item.price}
-                leftAvatar={{source: require('./images/cage.jpeg')}}
+                onPress={()=>props.onPress(item.id)}
+                leftAvatar={{source: item.image}}
             />
         );
     };

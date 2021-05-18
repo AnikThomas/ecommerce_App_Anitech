@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Home from './HomeComponent';
 import Product from './ProductComponent';
 import InventoryInfo from './InventoryInfoComponent';
 import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
 const ProductNavigator = createStackNavigator(
     {
@@ -14,17 +16,44 @@ const ProductNavigator = createStackNavigator(
         initialRouteName: 'Product',
         defaultNavigationOptions: {
             headerStyle: {
-                backgroundColor: '#B90E0A'
+                backgroundColor: '#9b111e'
             },
-            headerTintColor: '#fff',
+            headerTintColor: '#FFFFFF',
             headerTitleStyle: {
-                color: '#fff'
+                color: '#FFFFFF'
             }
         }
     }
 );
 
-const AppNavigator = createAppContainer(ProductNavigator);
+const HomeNavigator = createStackNavigator(
+    {
+        Home: { screen: Home}
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#9b111e'
+            },
+            headerTintColor: '#FFFFFF',
+            headerTitleStyle: {
+                color: '#FFFFFF'
+            }
+        }
+    }
+);
+
+const MainNavigator = createDrawerNavigator(
+    {
+        Home: { screen: HomeNavigator},
+        Product: { screen: ProductNavigator}
+    },
+    {
+        drawerBackgroundColor: '#9b111e'
+    }  
+);
+
+const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component{
     render(){

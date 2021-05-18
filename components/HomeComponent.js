@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import Carousel from './Carousel';
+import { DATA } from '../shared/datacarousel';
 
 class Home extends Component{
     static navigationOptions = {
@@ -8,7 +10,7 @@ class Home extends Component{
     render(){
         return(
             <View>
-                <Text>Home Component</Text>
+                <Carousel datacarousel = {DATA}/>
             </View>
         )
     }   

@@ -49,7 +49,8 @@ const MainNavigator = createDrawerNavigator(
         Product: { screen: ProductNavigator}
     },
     {
-        drawerBackgroundColor: '#9b111e'
+        drawerBackgroundColor: '#FFFFFF',
+        
     }  
 );
 
@@ -64,7 +65,7 @@ class Main extends Component{
                 }}>
 
                 <AppNavigator />
-
+            
             </View>
         );
     }

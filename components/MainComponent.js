@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Home from './HomeComponent';
+import About from './AboutComponent';
+import Contact from './ContactComponent';
 import Product from './ProductComponent';
 import InventoryInfo from './InventoryInfoComponent';
 import { View, Platform } from 'react-native';
@@ -42,11 +44,47 @@ const HomeNavigator = createStackNavigator(
         }
     }
 );
+const AboutNavigator = createStackNavigator(
+    {
+        About: { screen: About}
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#9b111e'
+            },
+            headerTintColor: '#FFFFFF',
+            headerTitleStyle: {
+                color: '#FFFFFF'
+            }
+        }
+    }
+);
+
+const ContactNavigator = createStackNavigator(
+    {
+        Contact: { screen: Contact }
+    },
+    {
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#9b111e'
+            },
+            headerTintColor: '#FFFFFF',
+            headerTitleStyle: {
+                color: '#FFFFFF'
+            }
+        }
+    }
+);
+
 
 const MainNavigator = createDrawerNavigator(
     {
         Home: { screen: HomeNavigator},
-        Product: { screen: ProductNavigator}
+        Product: { screen: ProductNavigator},
+        About: { screen: AboutNavigator},
+        Contact: { screen: ContactNavigator}
     },
     {
         drawerBackgroundColor: '#FFFFFF',

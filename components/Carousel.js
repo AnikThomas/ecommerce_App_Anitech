@@ -75,7 +75,7 @@ const Carousel = ({datacarousel})=>{
             </View>
         )
     }
-   console.log("where is the img") 
+   console.log("Provide The Image Please!") 
    return null
 }
 

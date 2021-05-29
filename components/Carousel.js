@@ -3,8 +3,6 @@ import { View, Text, Button, StyleSheet, Dimensions, FlatList, Animated } from '
 import CarouselComponent from './CarouselComponent';
 
 const {width, height} = Dimensions.get('window')
-let flatList
-   
 
 function infiniteScroll(datacarouselList){
     const numberOfData = datacarouselList.length
@@ -20,7 +18,7 @@ function infiniteScroll(datacarouselList){
             scrolled = 0
         }
 
-        this.flatList.scrollToOffset({ animated: true, offset: scrollValue})
+        this.myFlatList.scrollToOffset({ animated: true, offset: scrollValue})
         
     }, 3000)
 }
@@ -40,7 +38,7 @@ const Carousel = ({datacarousel})=>{
             <View>
                 <FlatList
                     data ={datacarousel}
-                    ref = {(flatList)=>{this.flatList = flatList}}
+                    ref = {(flatList)=>{this.myFlatList = flatList}}
                     keyExtractor={(item,index)=> 'key' + index}
                     horizontal
                     pagingEnabledscrollEnabled

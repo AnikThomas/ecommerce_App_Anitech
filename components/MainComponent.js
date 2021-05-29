@@ -8,6 +8,7 @@ import { View, Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
+import Constants from 'expo-constants';
 
 const ProductNavigator = createStackNavigator(
     {
@@ -99,7 +100,7 @@ class Main extends Component{
         return (
             <View style={{
                 flex: 1,
-                paddingTop: Platform.OS === 'i0s ? 0 : Expo.Constants.statusBarHeight'
+                paddingTop: Platform.OS === 'ios' ? 40 : Constants.statusBarHeight
                 }}>
 
                 <AppNavigator />

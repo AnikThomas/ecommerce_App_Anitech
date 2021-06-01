@@ -88,7 +88,7 @@ const MainNavigator = createDrawerNavigator(
         Contact: { screen: ContactNavigator}
     },
     {
-        drawerBackgroundColor: '#FFFFFF',
+        drawerBackgroundColor: '#fff',
         
     }  
 );

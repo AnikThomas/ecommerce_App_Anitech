@@ -3,7 +3,7 @@ export const BRANDS = [
         id:0,
         name: "Fisher",
         image:require("../components/images/brands/fisher.png"),
-        featured: false,
+        featured: true,
         description: "Highly reliable Products, number one technologies help to regulate, repair and isolate processes with certainty",
     },
     {

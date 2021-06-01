@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Text, ScrollView } from 'react-native';
+import { Text, ScrollView, FlatList } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
-import { FlatList } from 'react-native-gesture-handler';
-import { BRANDS } from '../shared/brand';
+import { BRANDS } from '../shared/brands';
 
 function AboutUs(){
     return(

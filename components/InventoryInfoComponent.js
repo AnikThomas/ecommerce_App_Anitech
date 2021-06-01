@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Icon } from 'react-native-elements';
 import { INVENTORIES } from '../shared/inventory';
 import { REVIEWS } from '../shared/reviews'
 
-function RenderInventory({inventory}){
+function RenderInventory(props){
+    const { inventory } = props;
+    
     if(inventory){
         return(
             <Card 
@@ -16,6 +18,15 @@ function RenderInventory({inventory}){
                 <Text style={{margin:5}}>
                     {inventory.partnumber} 
                 </Text>
+                <Icon 
+                    name={props.cart ? 'cart-plus' : 'cart-plus'}
+                    type='font-awesome'
+                    color='#9b111e'
+                    raised
+                    reverse
+                    onPress={()=> props.cart ? 
+                    console.log('Already put in to the cart') : props.markCart()}
+                />
             </Card>
         );
     }
@@ -28,7 +39,7 @@ function RenderReviews({reviews}){
             <View style={{margin: 10}}>
                 <Text style={{fontSize: 14}}>{item.comment}</Text>
                 <Text style={{fontSize: 12}}>{item.rating} Stars</Text>
-                <Text style={{fontSize: 12}}>{`--${item.customer},${item.date}`}</Text>
+                <Text style={{fontSize: 12}}>{`--${item.customer}, ${item.date}`}</Text>
             </View>
         );
     };
@@ -47,8 +58,12 @@ class InventoryInfo extends Component{
         super(props);
         this.state = {
             inventories: INVENTORIES,
-            reviews: REVIEWS
+            reviews: REVIEWS,
+            cart: false
         };
+    }
+    markCart(){
+        this.setState({cart: true});
     }
     static navigationOptions = {
         title: 'Product Information'
@@ -61,7 +76,10 @@ class InventoryInfo extends Component{
 
         return (
             <ScrollView>
-                <RenderInventory inventory={inventory}/>
+                <RenderInventory inventory={inventory}
+                    cart={this.state.cart}
+                    markCart={()=>this.markCart()}
+                />
                 <RenderReviews reviews={reviews}/>
             </ScrollView>
         );

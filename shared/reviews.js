@@ -108,7 +108,7 @@ export const REVIEWS =
         id: 13,
         productId: 2,
         rating: 5, 
-        text: "Fast Shipping and responsed!",
+        comment: "Fast Shipping and responsed!",
         customer: "Juan Eduardo Torres",
         date: "2021-10-25T16:30Z"
     },
@@ -116,7 +116,7 @@ export const REVIEWS =
         id: 14,
         productId: 2,
         rating: 4, 
-        text: "Their products never dissapointed us!",
+        comment: "Their products never dissapointed us!",
         customer: "Dahlia Ame",
         date: "2017-06-17T03:33Z"
     },

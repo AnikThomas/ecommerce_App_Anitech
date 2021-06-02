@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, FlatList } from 'react-native';
+import { Text, View, ScrollView, FlatList, StyleSheet } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { INVENTORIES } from '../shared/inventory';
 import { REVIEWS } from '../shared/reviews'
@@ -9,16 +9,19 @@ function RenderInventory(props){
     
     if(inventory){
         return(
-            <Card 
+
+            <Card style={styles.container}
                 featuredTitle={inventory.name}
                 image={inventory.image}>
-                <Text style={{margin:10}}>
-                    {inventory.price}
-                </Text>
-                <Text style={{margin:5}}>
-                    {inventory.partnumber} 
-                </Text>
-                <Icon 
+                <View style={styles.cardText}>
+                    <Text style={styles.cardText}>
+                        {inventory.price}
+                    </Text>
+                    <Text style={styles.cardText}>
+                        {inventory.partnumber} 
+                    </Text>
+                </View>
+                <Icon
                     name={props.cart ? 'cart-plus' : 'cart-plus'}
                     type='font-awesome'
                     color='#9b111e'
@@ -37,19 +40,23 @@ function RenderReviews({reviews}){
     const RenderReviewItem = ({item})=> {
         return(
             <View style={{margin: 10}}>
-                <Text style={{fontSize: 14}}>{item.comment}</Text>
-                <Text style={{fontSize: 12}}>{item.rating} Stars</Text>
+                <Text style={{fontSize: 16}}>{item.comment}</Text>
+                <Text style={{fontSize: 14, color:'grey'}}>{item.rating} Stars</Text>
                 <Text style={{fontSize: 12}}>{`--${item.customer}, ${item.date}`}</Text>
             </View>
         );
     };
     return(
-        <Card title='Reviews'>
-            <FlatList
-                data={reviews}
-                renderItem={RenderReviewItem}
-                keyExtractor={item => item.id.toString()}/>
-        </Card>
+        <View style={styles.container}>
+            <View style={styles.reviews}>
+                <Card title='Reviews'>
+                    <FlatList
+                        data={reviews}
+                        renderItem={RenderReviewItem}
+                        keyExtractor={item => item.id.toString()}/>
+                </Card>
+            </View>
+        </View>
     );
 }
 
@@ -87,5 +94,22 @@ class InventoryInfo extends Component{
     }
 }
 
-
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        paddingTop:5    
+    },
+    cardText:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        color:'#fff',
+        padding:5,
+        backgroundColor:'#9b111e'    
+    },
+    reviews:{
+        backgroundColor:'#9b111e',  
+        color:'#fff'    
+    }
+    
+});
 export default InventoryInfo;

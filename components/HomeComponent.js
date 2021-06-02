@@ -5,16 +5,15 @@ import { DATA } from '../shared/datacarousel';
 import { Card } from 'react-native-elements';
 import { BRANDS } from '../shared/brands';
 
-
 function RenderItem({item}){
     if(item){
         return(
-            <Card title= "ANITECH FEATURED BRANDS"
-                image={item.image}>
-                <Text style={{margin: 10}}>
-                    {item.description}
-                </Text> 
-            </Card>
+                <Card title= "ANITECH FEATURED BRANDS" style={{color:'red'}}
+                    image={item.image}>
+                    <Text style={{margin: 10}}>
+                        {item.description}
+                    </Text> 
+                </Card>
         )
     }
     return <View/>

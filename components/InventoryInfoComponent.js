@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList, StyleSheet } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-import { INVENTORIES } from '../shared/inventory';
-import { REVIEWS } from '../shared/reviews'
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state =>{
+    return{
+        inventories: state.inventories,
+        reviews: state.reviews
+    };
+};
 
 function RenderInventory(props){
     const { inventory } = props;
@@ -12,7 +19,7 @@ function RenderInventory(props){
 
             <Card style={styles.container}
                 featuredTitle={inventory.name}
-                image={inventory.image}>
+                image={{uri: baseUrl + inventory.image}}>
                 <View style={styles.cardText}>
                     <Text style={styles.cardText}>
                         {inventory.price}
@@ -64,8 +71,6 @@ class InventoryInfo extends Component{
     constructor(props){
         super(props);
         this.state = {
-            inventories: INVENTORIES,
-            reviews: REVIEWS,
             cart: false
         };
     }
@@ -78,8 +83,8 @@ class InventoryInfo extends Component{
 
     render(){
         const inventoryId = this.props.navigation.getParam('inventoryId');
-        const inventory = this.state.inventories.filter(inventory => inventory.id === inventoryId)[0];
-        const reviews = this.state.reviews.filter(review => review.productId === inventory.id)
+        const inventory = this.props.inventories.inventories.filter(inventory => inventory.id === inventoryId)[0];
+        const reviews = this.props.reviews.reviews.filter(review => review.productId === inventory.id)
 
         return (
             <ScrollView>
@@ -112,4 +117,4 @@ const styles = StyleSheet.create({
     }
     
 });
-export default InventoryInfo;
+export default connect(mapStateToProps)(InventoryInfo);

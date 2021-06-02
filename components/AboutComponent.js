@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, FlatList } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
-import { BRANDS } from '../shared/brands';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state =>{
+    return{
+        brands: state.brands
+    };
+};
 
 function AboutUs(){
     return(
@@ -17,12 +24,7 @@ function AboutUs(){
     )
 }
 class About extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            brands: BRANDS
-        }
-    }
+    
     static navigationOptions ={
         title: 'About Us'
     }
@@ -32,7 +34,7 @@ class About extends Component {
                 <ListItem
                     title={item.title}
                     subtitle={item.description}
-                    leftAvatar={{source: item.image}}
+                    leftAvatar={{source: {uri: baseUrl + item.image}}}
                 />
                 
             )
@@ -42,7 +44,7 @@ class About extends Component {
                 <AboutUs/>
                 <Card title="Our Brands">
                     <FlatList
-                        data={this.state.brands}
+                        data={this.props.brands.brands}
                         renderItem={renderBrand}
                         keyExtractor={item =>item.id.toString()}
                     >
@@ -53,4 +55,4 @@ class About extends Component {
     }
 }
 
-export default About;
+export default connect (mapStateToProps)(About);

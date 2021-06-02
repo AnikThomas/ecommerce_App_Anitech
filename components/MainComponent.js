@@ -11,6 +11,14 @@ import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import Constants from 'expo-constants';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
+import { connect } from 'react-redux';
+import {fetchInventories, fetchReviews, fetchBrands } from '../redux/ActionCreators';
+
+const mapDispatchToProps = {
+    fetchInventories,
+    fetchReviews,
+    fetchBrands
+};
 
 const ProductNavigator = createStackNavigator(
     {
@@ -187,6 +195,11 @@ const MainNavigator = createDrawerNavigator(
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component{
+    componentDidMount(){
+        this.props.fetchInventories();
+        this.props.fetchReviews();
+        this.props.fetchBrands();
+    }
     render(){
         return (
             <View style={{
@@ -229,4 +242,4 @@ const styles = StyleSheet.create({
         fontSize: 24
     }
 });
-export default Main;
+export default connect(null,mapDispatchToProps)(Main);

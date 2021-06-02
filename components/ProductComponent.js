@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, View} from 'react-native';
+import { FlatList, StyleSheet} from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { INVENTORIES } from '../shared/inventory';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state =>{
+    return{
+        inventories: state.inventories
+    };
+};
 
 const numColumns = 2
-// const WIDTH = Dimensions.get('window').width
+
 class Products extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            inventories: INVENTORIES
-        }
-    }
     static navigationOptions = {
         title: 'Products'
     }
@@ -21,15 +22,15 @@ class Products extends Component{
             return(
                     <ListItem style={styles.itemStyle}
                         title={item.name}
-                        subtitle={item.price}
+                        caption={item.price}
                         onPress={()=>navigate('InventoryInfo',{inventoryId: item.id})}
-                        leftAvatar={{source: item.image}}    
+                        leftAvatar={{source: { uri: baseUrl + item.image }}}    
                     />  
             );
         };
         return(
                 <FlatList style={styles.container}
-                    data={this.state.inventories}
+                    data={this.props.inventories.inventories}
                     renderItem={renderProductItem}
                     keyExtractor={item => item.toString()}
                     numColumns={numColumns}
@@ -54,4 +55,4 @@ const styles = StyleSheet.create({
         width:200
     },
 });
-export default Products;
+export default connect(mapStateToProps)(Products);

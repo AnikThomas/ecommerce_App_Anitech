@@ -16,7 +16,7 @@ export const fetchReviews = () => dispatch =>{
                 const errMess = new Error(error.message);
                 throw errMess;
             })
-        .then(response => response.jason())
+        .then(response => response.json())
         .then(reviews => dispatch(addReviews(reviews)))
         .catch(error => dispatch(reviewsFailed(error.message)))      
 };

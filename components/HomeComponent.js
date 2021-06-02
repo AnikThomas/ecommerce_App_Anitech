@@ -3,13 +3,19 @@ import { View, Text, ScrollView} from 'react-native';
 import Carousel from './Carousel';
 import { DATA } from '../shared/datacarousel';
 import { Card } from 'react-native-elements';
-import { BRANDS } from '../shared/brands';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
 
+const mapStateToProps = state =>{
+    return{
+        brands: state.brands
+    };
+};
 function RenderItem({item}){
     if(item){
         return(
                 <Card title= "ANITECH FEATURED BRANDS" style={{color:'red'}}
-                    image={item.image}>
+                    image={{uri: baseUrl + item.image}}>
                     <Text style={{margin: 10}}>
                         {item.description}
                     </Text> 
@@ -19,12 +25,6 @@ function RenderItem({item}){
     return <View/>
 }
 class Home extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            brands: BRANDS
-        }
-    }
     static navigationOptions = {
         title: 'Home'
     }
@@ -33,10 +33,10 @@ class Home extends Component{
             <ScrollView>
                 <Carousel datacarousel = {DATA}/>
                 <RenderItem
-                    item={this.state.brands.filter(brand=>brand.featured)[0]}/>
+                    item={this.props.brands.brands.filter(brand=>brand.featured)[0]}/>
             </ScrollView>
         )
     }   
 }
 
-export default Home;
+export default connect(mapStateToProps)(Home);

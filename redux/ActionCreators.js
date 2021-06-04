@@ -99,3 +99,12 @@ export const addBrands = brands => ({
     type: ActionTypes.ADD_BRANDS,
     payload: brands
 });
+export const postCart = inventoryId => dispatch => {
+    setTimeout(() => {
+        dispatch(addCart(inventoryId));
+    }, 2000);
+};
+export const addCart = inventoryId=> ({
+    type: ActionTypes.ADD_CART,
+    payload: inventoryId
+});

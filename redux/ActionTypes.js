@@ -9,5 +9,6 @@ export const BRANDS_LOADING ='BRANDS_LOADING';
 export const ADD_BRANDS = 'ADD_BRANDS';
 export const BRANDS_FAILED = "BRANDS_FAILED";
 
+export const ADD_CART = 'ADD_CART';
 
 

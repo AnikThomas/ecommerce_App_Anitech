@@ -28,18 +28,18 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 0.5, height:0.5},
         shadowOpacity: 0.5,
         shadowRadius: 3,
-        elevation: 5,
+        elevation: 5
     },
     textView:{
         position: 'absolute',
         bottom: 10,
         margin: 10,
-        left: 5,
+        left: 5
     },
     image:{
         width: width-20,
-        height: height / 3,
-        borderRadius: 10
+        height: height / 2,
+        borderRadius: 1
     },
     itemTitle:{
         color:'white',

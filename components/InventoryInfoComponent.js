@@ -3,12 +3,19 @@ import { Text, View, ScrollView, FlatList, StyleSheet } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { postCart } from '../redux/ActionCreators';
+
 
 const mapStateToProps = state =>{
     return{
         inventories: state.inventories,
-        reviews: state.reviews
+        reviews: state.reviews,
+        carts: state.carts
     };
+};
+
+const mapDispatchToProps ={
+    postCart: inventoryId => postCart(inventoryId)
 };
 
 function RenderInventory(props){
@@ -47,9 +54,9 @@ function RenderReviews({reviews}){
     const RenderReviewItem = ({item})=> {
         return(
             <View style={{margin: 10}}>
-                <Text style={{fontSize: 16}}>{item.comment}</Text>
-                <Text style={{fontSize: 14, color:'grey'}}>{item.rating} Stars</Text>
-                <Text style={{fontSize: 12}}>{`--${item.customer}, ${item.date}`}</Text>
+                <Text style={{fontSize: 16,fontWeight:'650'}}>{item.comment}</Text>
+                <Text style={{fontSize: 14, color:'orange'}}>{item.rating} Stars</Text>
+                <Text style={{fontSize: 12,color:'grey',fontWeight:'700'}}>{`--${item.customer}, ${item.date}`}</Text>
             </View>
         );
     };
@@ -68,17 +75,12 @@ function RenderReviews({reviews}){
 }
 
 class InventoryInfo extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            cart: false
-        };
-    }
-    markCart(){
-        this.setState({cart: true});
+    
+    markCart(inventoryId){
+        this.props.postCart(inventoryId);
     }
     static navigationOptions = {
-        title: 'Product Information'
+        title: 'Product Description'
     }
 
     render(){
@@ -89,8 +91,8 @@ class InventoryInfo extends Component{
         return (
             <ScrollView>
                 <RenderInventory inventory={inventory}
-                    cart={this.state.cart}
-                    markCart={()=>this.markCart()}
+                    cart={this.props.carts.includes(inventoryId)}
+                    markCart={()=>this.markCart(inventoryId)}
                 />
                 <RenderReviews reviews={reviews}/>
             </ScrollView>
@@ -109,7 +111,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         color:'#fff',
         padding:5,
-        backgroundColor:'#9b111e'    
+        marginBottom:0,
+        backgroundColor:'#9b111e',
+        fontWeight:'700',
+        fontSize:15
+          
     },
     reviews:{
         backgroundColor:'#9b111e',  
@@ -117,4 +123,4 @@ const styles = StyleSheet.create({
     }
     
 });
-export default connect(mapStateToProps)(InventoryInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(InventoryInfo);

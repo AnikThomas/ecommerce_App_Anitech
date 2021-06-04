@@ -3,8 +3,9 @@ import Home from './HomeComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Product from './ProductComponent';
+import Subscription from './SubscriptionFormComponent';
 import InventoryInfo from './InventoryInfoComponent';
-import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import { View, Platform, StyleSheet, ScrollView, Image } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
@@ -113,6 +114,29 @@ const ContactNavigator = createStackNavigator(
     }
 );
 
+const SubscriptionNavigator = createStackNavigator(
+    {
+        Subscription: { screen: Subscription }
+    },
+    {
+        defaultNavigationOptions: ({navigation}) => ({
+            headerStyle: {
+                backgroundColor: '#9b111e'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            },
+            headerLeft: <Icon
+                name='user-circle'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+);
+
 const CustomDrawer = props => (
     <ScrollView>
         <SafeAreaView
@@ -160,6 +184,20 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         },
+        Subscription: { screen: SubscriptionNavigator,
+            navigationOptions:{
+                drawerLabel: 'Newsletter Subscription',
+                drawerIcon:({tintColor})=>(
+                    <Icon 
+                        name='user-circle'
+                        type='font-awesome'
+                        size={24}
+                        color={tintColor} 
+                        
+                        />
+                )
+            }
+        },
         About: { screen: AboutNavigator,
             navigationOptions:{
                 drawerIcon:({tintColor})=>(
@@ -191,6 +229,8 @@ const MainNavigator = createDrawerNavigator(
         contentComponent: CustomDrawer
     }  
 );
+
+
 
 const AppNavigator = createAppContainer(MainNavigator);
 
